@@ -1,12 +1,12 @@
 ###################################################################
-# Predição da popularidade de um tópico no twitter                #
+# PrediÃ§Ã£o da popularidade de um tÃ³pico no twitter                #
 ################################################################### 
 
 library(corrplot)
 
 set.seed(100)
 
-#Inspeção
+#InspeÃ§Ã£o
 dataTrain <- read.csv("twitter_training_set.csv", header = TRUE, stringsAsFactors=TRUE)
 dataVal <- read.csv("twitter_validation_set.csv", header = TRUE, stringsAsFactors=TRUE)
 dataTest <- read.csv("twitter_test_set.csv", header = TRUE, stringsAsFactors=TRUE)
@@ -24,7 +24,7 @@ any(is.na(dataTrain))
 any(is.na(dataVal))
 any(is.na(dataTest))
 
-#Normalização - MinMax
+#NormalizaÃ§Ã£o - MinMax
 min_features <- apply(dataTrain[,1:8], 2, min)
 min_features
 
@@ -57,7 +57,7 @@ dim(outliers)
 #boxplot(dataTrain$target)
 #summary(dataTrain)
 
-#Correlação
+#CorrelaÃ§Ã£o
 corrplot(cor(dataTrain), method="number")
 #PCA
 pca <- prcomp(dataTrain[,1:8], scale=F)
@@ -137,7 +137,7 @@ testPred <- predict(model, dataTest)
 mae_test <- MAE(testPred, dataTest$target)
 mae_test
 
-### Combinação somente das features principais ###
+### CombinaÃ§Ã£o somente das features principais ###
 f01 <- formula(target ~ NCD + AI + AL 
                + (NCD + AI + AL)^2)
 
